@@ -7,6 +7,7 @@ const encounter = document.querySelector('.encounter');
 const discovery = document.querySelector('.discovery');
 
 const routes = [
+  ['◇', 'Approcher la porte qui vient de s’ouvrir', 'la porte entrouverte'],
   ['↖', 'Suivre l’odeur de pain un peu brûlé', 'la boulangerie'],
   ['○', 'Parler à la personne qui attend au coin', 'le coin bleu'],
   ['↝', 'Prendre la ruelle qui n’est pas sur la carte', 'la ruelle'],
@@ -46,7 +47,10 @@ const shuffled = list => [...list].sort(() => Math.random() - .5);
 
 function buildArrival() {
   const previous = JSON.parse(localStorage.getItem('bellebrume-routes') || '[]');
-  let options = shuffled(routes.filter(route => !previous.includes(route[1]))).slice(0, 3);
+  const windowSeen = localStorage.getItem('bellebrume-window') === 'seen';
+  const available = routes.filter(route => !previous.includes(route[1]) && (windowSeen || route[2] !== 'la porte entrouverte'));
+  let options = shuffled(available).slice(0, 3);
+  if (windowSeen && !options.includes(routes[0])) options[0] = routes[0];
   if (options.length < 3) options = shuffled(routes).slice(0, 3);
   document.querySelector('.choices').innerHTML = options.map((route, index) => `
     <button class="choice" type="button" data-route="${routes.indexOf(route)}" aria-label="${route[1]}">
@@ -56,7 +60,7 @@ function buildArrival() {
 }
 
 function showEncounter(route) {
-  const person = pick(people);
+  const person = route[2] === 'la porte entrouverte' ? pick([people[3], people[4], people[5]]) : pick(people);
   const history = JSON.parse(localStorage.getItem('bellebrume-routes') || '[]');
   localStorage.setItem('bellebrume-routes', JSON.stringify([...history, route[1]].slice(-4)));
   encounter.querySelector('.story-kicker').textContent = `Tu choisis ${route[2]}. Quelqu’un t’arrête.`;

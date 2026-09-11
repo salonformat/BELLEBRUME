@@ -785,6 +785,17 @@ h1 span {
 @keyframes leaves-collage { from{transform:perspective(750px) translate3d(-12px,4px,155px) rotateY(-7deg) rotateZ(-1deg)} to{transform:perspective(750px) translate3d(14px,-6px,195px) rotateY(9deg) rotateZ(1.5deg)} }
 @keyframes lantern-collage { 0%,21%,25%,69%,100%{opacity:.92;filter:brightness(1) drop-shadow(14px 20px 13px rgba(7,15,23,.4))} 22%,24%,70%,74%{opacity:1;filter:brightness(1.3) drop-shadow(0 0 25px rgba(255,194,69,.9))} }
 
+/* Reference scene v2: controlled WebGL depth, no floating cut-up full-scene fragments. */
+#bellebrume-stage { position:fixed; z-index:2; inset:0; width:100%; height:100%; display:block; cursor:crosshair; transition:opacity .7s ease,filter .7s ease; }
+.cover:not(.arrived):not(.met-someone):not(.found-something) .village,
+.cover:not(.arrived):not(.met-someone):not(.found-something) .opening-motion,
+.cover:not(.arrived):not(.met-someone):not(.found-something) .theatre-opening { display:none; }
+.cover.arrived #bellebrume-stage,.cover.met-someone #bellebrume-stage,.cover.found-something #bellebrume-stage { opacity:0; pointer-events:none; filter:blur(8px); }
+.scene-whisper { position:fixed; z-index:10; left:50%; bottom:7vh; width:min(620px,82vw); margin:0; padding:14px 18px; color:#fff3d2; background:rgba(18,34,49,.88); box-shadow:0 12px 35px rgba(6,14,22,.38); font:500 16px/1.5 "Josefin Sans",sans-serif; text-align:center; opacity:0; transform:translate(-50%,18px); pointer-events:none; transition:.55s ease; }
+.scene-whisper.visible { opacity:1; transform:translate(-50%,0); }
+.intro,.masthead,.receipt,.margin-note { z-index:8; }
+@media(max-width:760px){.scene-whisper{bottom:4vh;font-size:15px}.receipt{display:none}}
+
 .story-copy {
   position: relative;
   z-index: 3;

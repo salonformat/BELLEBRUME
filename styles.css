@@ -757,6 +757,34 @@ h1 span {
 
 @media(max-width:760px){.paper-theatre .scrap{background-size:178vw auto}.opening-window{width:45vw}.opening-person{width:24vw}.bakery-cyclist,.square-teacher{width:34vw}.theatre-opening .opening-roof{display:none}.paper-theatre{opacity:.72}}
 
+/* Genuine transparent collage sheets replace the earlier duplicated scene crops. */
+.paper-theatre .scrap { display: none !important; }
+.collage-layer { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; filter:drop-shadow(14px 20px 13px rgba(7,15,23,.4)); transform-style:preserve-3d; will-change:transform,filter; }
+.collage-layer.layer-a { clip-path:inset(0 48% 49% 0); transform:translate3d(var(--far-x),var(--far-y),70px) rotate(-1deg); animation:collage-drift-a 5.8s ease-in-out infinite alternate; }
+.collage-layer.layer-b { clip-path:inset(0 0 46% 43%); transform:translate3d(var(--mid-x),var(--mid-y),105px) rotate(.7deg); transform-origin:72% 18%; animation:collage-drift-b 3.9s ease-in-out infinite alternate; }
+.collage-layer.layer-c { clip-path:inset(42% 0 0 0); transform:translate3d(var(--near-x),var(--near-y),165px); transform-origin:50% 100%; animation:collage-drift-c 4.8s ease-in-out infinite alternate; }
+.theatre-bakery .collage-layer { width:92%; height:92%; left:7%; top:5%; }
+.theatre-bakery .layer-a { clip-path:inset(0 66% 30% 0); animation-name:door-collage; transform-origin:14% 42%; }
+.theatre-bakery .layer-b { clip-path:inset(0 0 36% 27%); animation-name:laundry-collage; }
+.theatre-bakery .layer-c { clip-path:inset(32% 0 0 20%); animation-name:cycle-collage; }
+.theatre-square .collage-layer { width:86%; height:86%; left:9%; top:7%; }
+.theatre-square .layer-a { clip-path:inset(0 70% 27% 0); animation-name:door-collage; }
+.theatre-square .layer-b { clip-path:inset(0 0 35% 28%); animation-name:laundry-collage; }
+.theatre-square .layer-c { clip-path:inset(34% 0 0 16%); animation-name:people-collage; }
+.theatre-greenhouse .collage-layer { width:94%; height:94%; left:3%; top:3%; }
+.theatre-greenhouse .layer-a { clip-path:inset(0 65% 0 0); animation-name:leaves-collage; transform-origin:0 55%; }
+.theatre-greenhouse .layer-b { clip-path:inset(0 27% 12% 26%); animation-name:door-collage; transform-origin:38% 52%; }
+.theatre-greenhouse .layer-c { clip-path:inset(0 0 0 55%); animation-name:lantern-collage; }
+@keyframes collage-drift-a { from{translate:-4px 4px;rotate:-1deg} to{translate:8px -5px;rotate:.8deg} }
+@keyframes collage-drift-b { from{transform:perspective(800px) translate3d(-5px,3px,95px) rotateY(-4deg)} to{transform:perspective(800px) translate3d(8px,-5px,125px) rotateY(9deg)} }
+@keyframes collage-drift-c { from{transform:perspective(800px) translate3d(-9px,4px,145px) rotateY(-3deg)} to{transform:perspective(800px) translate3d(13px,-7px,185px) rotateY(6deg)} }
+@keyframes door-collage { 0%,18%,100%{transform:perspective(750px) translateZ(90px) rotateY(0)} 42%,72%{transform:perspective(750px) translateZ(145px) rotateY(-15deg)} }
+@keyframes laundry-collage { from{transform:perspective(650px) translate3d(-7px,1px,100px) rotateX(-2deg) rotateY(-7deg)} to{transform:perspective(650px) translate3d(9px,5px,135px) rotateX(5deg) rotateY(10deg)} }
+@keyframes cycle-collage { 0%,100%{transform:translate3d(-14px,3px,145px) rotate(-.7deg)} 50%{transform:translate3d(16px,-5px,175px) rotate(1deg)} }
+@keyframes people-collage { 0%,100%{transform:translate3d(-5px,2px,135px)} 48%{transform:translate3d(8px,-5px,168px)} 55%{transform:translate3d(11px,-3px,172px)} }
+@keyframes leaves-collage { from{transform:perspective(750px) translate3d(-12px,4px,155px) rotateY(-7deg) rotateZ(-1deg)} to{transform:perspective(750px) translate3d(14px,-6px,195px) rotateY(9deg) rotateZ(1.5deg)} }
+@keyframes lantern-collage { 0%,21%,25%,69%,100%{opacity:.92;filter:brightness(1) drop-shadow(14px 20px 13px rgba(7,15,23,.4))} 22%,24%,70%,74%{opacity:1;filter:brightness(1.3) drop-shadow(0 0 25px rgba(255,194,69,.9))} }
+
 .story-copy {
   position: relative;
   z-index: 3;

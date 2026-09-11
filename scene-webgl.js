@@ -35,19 +35,17 @@
   const collage=texture('assets/collage-opening.png');
   const rect=(x,y,w,h)=>[x/1672,1-(y+h)/941,w/1672,h/941];
   const pieces=[
-    {name:'window',c:[-.56,.34],s:[.34,.43],uv:rect(100,10,610,430),depth:.28},
-    {name:'laundry',c:[.48,.48],s:[.48,.30],uv:rect(790,10,850,430),depth:.18},
-    {name:'leaves',c:[-.72,-.58],s:[.47,.47],uv:rect(20,420,790,500),depth:.48},
-    {name:'pot',c:[.72,-.55],s:[.22,.32],uv:rect(1300,470,350,450),depth:.4},
-    {name:'light',c:[.08,.03],s:[.10,.13],uv:rect(800,380,210,230),depth:.22}
+    {name:'window',c:[.14,.37],s:[.10,.17],uv:rect(100,10,610,430)},
+    {name:'laundry',c:[.39,.48],s:[.15,.10],uv:rect(790,10,850,430)}
   ];
-  let pointer={x:0,y:0}, seen=false, born=performance.now();
+  let pointer={x:0,y:0}, seen=localStorage.getItem('bellebrume-window')==='seen', seenAt=null, born=performance.now();
   const resize=()=>{ const d=Math.min(devicePixelRatio,2); canvas.width=innerWidth*d;canvas.height=innerHeight*d;gl.viewport(0,0,canvas.width,canvas.height);}; resize(); addEventListener('resize',resize);
   addEventListener('pointermove',e=>{pointer.x=e.clientX/innerWidth-.5;pointer.y=e.clientY/innerHeight-.5;});
   canvas.addEventListener('pointerdown',e=>{
     const x=e.clientX/innerWidth*2-1, y=1-e.clientY/innerHeight*2;
-    if(x>-0.9&&x<-.2&&y>.05&&y<.78&&!seen){
+    if(x>-.84&&x<-.60&&y>.08&&y<.44&&!seen){
       seen=true; localStorage.setItem('bellebrume-window','seen');
+      seenAt=performance.now();
       whisper.textContent='La personne te voit. Elle referme doucement la fenêtre. Quelque part, une porte vient de s’ouvrir.';
       whisper.classList.add('visible');
       document.querySelector('.invitation').textContent='Quelqu’un sait maintenant que tu es arrivé.';
@@ -59,21 +57,22 @@
   function frame(now){
     gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT);gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);
     const aspect=innerWidth/innerHeight, imageAspect=1.7778; let sx=1,sy=1; if(aspect>imageAspect) sy=aspect/imageAspect; else sx=imageAspect/aspect;
-    draw(bg,[0,0],[sx,sy],[0,0,1,1],[-pointer.x*.012,pointer.y*.009]);
+    draw(bg,[0,0],[sx,sy],[0,0,1,1],[-pointer.x*.003,pointer.y*.002]);
     const t=(now-born)/1000;
     pieces.forEach(p=>{
-      let sway=Math.sin(t*(p.name==='laundry'?1.25:.48)+p.depth*8)*.006;
-      let alpha=1, turn=sway;
+      let alpha=1, turn=0, extraX=0, extraY=0;
       if(p.name==='window'){
-        const intro=Math.min(1,Math.max(0,(t-1.2)/1.4)); alpha=seen?Math.max(0,1-(t-(performance.now()-born)/1000)*0):intro;
-        if(seen){ const since=(now-window.seenAt||now)/1000; alpha=Math.max(0,1-since); }
+        const intro=Math.min(1,Math.max(0,(t-1.4)/1.1));
+        alpha=seen ? (seenAt ? Math.max(0,1-(now-seenAt)/1100) : 0) : intro;
+        if(seenAt){ extraX=Math.min(.035,(now-seenAt)/24000); }
       }
-      if(p.name==='light') alpha=.7+Math.sin(t*2.1)*.18;
-      draw(collage,p.c,p.s,p.uv,[pointer.x*p.depth*.07,-pointer.y*p.depth*.05],turn,alpha);
+      if(p.name==='laundry') turn=Math.sin(t*.72)*.009;
+      const anchoredCenter=[(p.c[0]*2-1)*sx,(1-p.c[1]*2)*sy];
+      const anchoredSize=[p.s[0]*sx,p.s[1]*sy];
+      draw(collage,anchoredCenter,anchoredSize,p.uv,[extraX,extraY],turn,alpha);
     });
     requestAnimationFrame(frame);
   }
-  canvas.addEventListener('pointerdown',()=>{ if(seen&&!window.seenAt) window.seenAt=performance.now(); },{once:true});
   requestAnimationFrame(frame);
 
   let ambience;

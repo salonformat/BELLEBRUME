@@ -22,6 +22,7 @@
 .baker-worker{position:absolute;z-index:4;left:40.8%;top:57.2%;width:10.7%;height:20%;background:url('assets/baker-work.png') 0 50%/400% 100% no-repeat;filter:drop-shadow(4px 7px 5px rgba(9,18,27,.25));animation:baker-hands 3.2s steps(3,end) infinite}
 .walking-woman{position:absolute;z-index:5;left:27%;top:69%;width:10.8%;height:25%;background:url('assets/woman-walk.png') 0 50%/400% 100% no-repeat;filter:drop-shadow(7px 10px 7px rgba(9,18,27,.28));animation:walk-frames .82s steps(3,end) infinite,walk-across 12s linear infinite}
 .stage.unfolded:before{content:"";position:absolute;z-index:7;left:14%;top:64%;width:30%;height:22%;pointer-events:none;background:radial-gradient(circle at 8% 78%,rgba(255,218,120,.75) 0 3px,transparent 4px),radial-gradient(circle at 35% 61%,rgba(255,218,120,.55) 0 3px,transparent 4px),radial-gradient(circle at 64% 38%,rgba(255,218,120,.42) 0 2px,transparent 3px),radial-gradient(circle at 94% 16%,rgba(255,218,120,.3) 0 2px,transparent 3px);opacity:.75}
+.baker-worker,.walking-woman{display:none!important}
 @keyframes note-await{0%,100%{transform:translate3d(132%,205%,150px) scale(.58) rotate(4deg)}50%{transform:translate3d(132%,200%,158px) scale(.59) rotate(2deg)}}
 @keyframes baker-hands{from{background-position-x:0}to{background-position-x:100%}}
 @keyframes walk-frames{from{background-position-x:0}to{background-position-x:100%}}

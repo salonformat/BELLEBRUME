@@ -70,18 +70,16 @@ button { color: inherit; font: inherit; }
 .intro {
   position: absolute;
   z-index: 8;
-  top: 41%;
-  left: clamp(28px, 5vw, 78px);
-  width: min(38vw, 490px);
-  padding: clamp(20px, 2.4vw, 34px) clamp(22px, 2.8vw, 40px) 30px;
-  background: rgba(255, 244, 215, .96);
-  box-shadow: 5px 9px 22px rgba(15, 28, 45, .24);
-  clip-path: polygon(1% 1%, 99% 0, 100% 97%, 64% 100%, 2% 98%, 0 42%);
+  top: 25%;
+  left: clamp(34px, 6vw, 94px);
+  width: min(47vw, 590px);
+  color: #fff3d2;
+  filter: drop-shadow(0 2px 5px rgba(13, 25, 39, .7));
   transform: translateY(-49%) rotate(-.35deg);
 }
 
 .eyebrow {
-  margin: 0 0 18px 7px;
+  margin: 0 0 11px 2px;
   font-family: "Della Respira", Georgia, serif;
   font-size: clamp(13px, 1.05vw, 16px);
   font-style: italic;
@@ -90,45 +88,48 @@ button { color: inherit; font: inherit; }
 h1 {
   margin: 0;
   font-family: "Della Respira", Georgia, serif;
-  font-size: clamp(54px, 6.8vw, 110px);
+  font-size: clamp(54px, 6.3vw, 100px);
   font-weight: 400;
   letter-spacing: -.055em;
-  line-height: .78;
+  line-height: 1;
+  white-space: nowrap;
 }
 
 h1 span {
-  display: block;
-  margin-left: .52em;
-  color: #426b94;
+  display: inline;
+  margin-left: .035em;
+  color: #f2c65b;
   font-style: italic;
 }
 
 .invitation {
-  width: 250px;
-  margin: 26px 0 19px 10px;
-  font-size: 17px;
-  font-weight: 500;
+  width: min(330px, 100%);
+  margin: 15px 0 12px 3px;
+  font-size: 16px;
+  font-weight: 600;
   line-height: 1.48;
+  text-shadow: 0 1px 1px #1a2a3a, 0 2px 8px rgba(14, 27, 42, .9);
 }
 
 .enter {
   display: flex;
   align-items: center;
   gap: 28px;
-  margin-left: 8px;
+  margin-left: 2px;
   border: 0;
-  border-bottom: 2px solid var(--ink);
+  border-bottom: 2px solid currentColor;
   padding: 8px 2px 7px;
   background: transparent;
   cursor: pointer;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: .1em;
+  text-shadow: 0 1px 1px #1a2a3a, 0 2px 7px rgba(14, 27, 42, .85);
   text-transform: uppercase;
   transition: gap .25s ease, color .25s ease;
 }
 
-.enter:hover { gap: 42px; color: var(--terra); }
+.enter:hover { gap: 42px; color: #f2c65b; }
 .enter i { font-size: 20px; font-style: normal; }
 
 .village {
@@ -220,9 +221,14 @@ h1 span {
     text-shadow: none;
   }
   .masthead > span { max-width: 130px; }
-  .intro { top: 31%; left: 18px; width: calc(100vw - 36px); }
-  h1 { font-size: clamp(64px, 23vw, 105px); }
-  .invitation { margin-top: 27px; }
+  .intro {
+    top: 24%;
+    left: 18px;
+    width: min(90vw, 430px);
+  }
+  h1 { font-size: clamp(38px, 12vw, 58px); }
+  .eyebrow { font-size: 12px; }
+  .invitation { margin-top: 13px; font-size: 15px; }
   .village { width: 178vw; right: -54vw; bottom: 0; }
   .receipt { display: none; }
   .margin-note { left: 6%; bottom: 5%; }

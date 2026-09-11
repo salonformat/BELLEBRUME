@@ -75,7 +75,8 @@ button { color: inherit; font: inherit; }
   width: min(47vw, 590px);
   color: #fff3d2;
   filter: drop-shadow(0 2px 5px rgba(13, 25, 39, .7));
-  transform: translateY(-49%) rotate(-.35deg);
+  transform: translate3d(var(--tx, 0), calc(-49% + var(--ty, 0)), 42px) rotate(-.35deg);
+  transition: transform .8s cubic-bezier(.2,.8,.2,1);
 }
 
 .eyebrow {
@@ -139,9 +140,33 @@ h1 span {
   bottom: -2vw;
   width: 101vw;
   margin: 0;
-  transform: rotate(.6deg) translate3d(var(--x, 0), var(--y, 0), 0);
+  transform: perspective(1200px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) rotate(.6deg) translate3d(var(--x, 0), var(--y, 0), 0) scale(1.015);
   transform-origin: 65% 70%;
+  transform-style: preserve-3d;
   transition: transform 1.3s cubic-bezier(.2,.8,.2,1), filter .8s ease;
+}
+
+.village::before,
+.village::after {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  background: url('assets/bellebrume-collage.png') center / 100% 100% no-repeat;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.village::before {
+  clip-path: polygon(0 0, 35% 0, 43% 100%, 0 100%);
+  filter: drop-shadow(16px 12px 11px rgba(12, 23, 34, .35));
+  transform: translate3d(var(--near-x, 0), var(--near-y, 0), 70px) scale(1.014);
+}
+
+.village::after {
+  clip-path: polygon(57% 0, 100% 0, 100% 100%, 48% 100%);
+  filter: drop-shadow(-13px 15px 12px rgba(12, 23, 34, .3));
+  transform: translate3d(var(--mid-x, 0), var(--mid-y, 0), 40px) scale(1.008);
 }
 
 .village img {
@@ -165,6 +190,8 @@ h1 span {
   font-weight: 500;
   line-height: 1.7;
   transform: rotate(3.4deg);
+  transform-origin: 50% -8px;
+  animation: paper-air 9s ease-in-out infinite alternate;
 }
 
 .receipt span, .receipt em { display: block; }
@@ -213,6 +240,270 @@ h1 span {
   font-size: 10px;
 }
 
+.arrival {
+  position: fixed;
+  z-index: 15;
+  inset: 0;
+  display: grid;
+  grid-template-columns: minmax(270px, .8fr) minmax(470px, 1.35fr);
+  align-items: end;
+  gap: clamp(25px, 5vw, 80px);
+  padding: clamp(70px, 9vh, 110px) clamp(26px, 6vw, 90px) clamp(30px, 7vh, 72px);
+  color: #fff3d2;
+  background:
+    linear-gradient(90deg, rgba(25, 43, 64, .92) 0%, rgba(25, 43, 64, .66) 38%, rgba(25, 43, 64, .13) 72%),
+    url('assets/bellebrume-collage.png') center / cover no-repeat;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.025);
+  transition: opacity .55s ease, transform 1.05s ease;
+}
+
+.cover.arrived .arrival {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+.cover.arrived > .intro,
+.cover.arrived > .masthead,
+.cover.arrived > .village,
+.cover.arrived > .receipt,
+.cover.arrived > .margin-note {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .45s ease;
+}
+
+.arrival-copy { align-self: center; max-width: 430px; }
+
+.chapter,
+.consequence-label {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .17em;
+  text-transform: uppercase;
+}
+
+.chapter {
+  padding: 8px 11px 6px;
+  color: var(--ink);
+  background: #f2c65b;
+  transform: rotate(-1.2deg);
+}
+
+.arrival-time {
+  margin: 24px 0 8px;
+  font: 15px "Della Respira", Georgia, serif;
+  color: #f2c65b;
+}
+
+.arrival h2 {
+  max-width: 420px;
+  margin: 0;
+  font: 400 clamp(42px, 5.3vw, 82px)/.98 "Della Respira", Georgia, serif;
+  letter-spacing: -.045em;
+  text-wrap: balance;
+  text-shadow: 0 2px 8px rgba(10,20,30,.7);
+}
+
+.arrival-lead {
+  max-width: 360px;
+  margin: 22px 0;
+  font-size: clamp(16px, 1.25vw, 19px);
+  font-weight: 500;
+  line-height: 1.5;
+  text-shadow: 0 2px 7px rgba(10,20,30,.8);
+}
+
+.question {
+  margin-top: 32px;
+  font: italic 18px "Della Respira", Georgia, serif;
+}
+
+.choices {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: end;
+  gap: clamp(12px, 1.8vw, 25px);
+}
+
+.choice {
+  --card: #f2c65b;
+  position: relative;
+  min-height: clamp(210px, 29vw, 360px);
+  border: 0;
+  padding: 24px 20px 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  background: var(--card);
+  color: var(--ink);
+  cursor: pointer;
+  text-align: left;
+  box-shadow: 5px 8px 20px rgba(13, 24, 36, .2);
+  clip-path: polygon(2% 1%, 98% 0, 100% 72%, 96% 99%, 3% 97%, 0 28%);
+  transition: transform .25s ease, filter .25s ease;
+}
+
+.choice:nth-child(2) { --card: #cf7159; transform: rotate(1.4deg) translateY(-16px); }
+.choice:nth-child(3) { --card: #93a586; transform: rotate(-1.1deg) translateY(6px); }
+.choice:hover,
+.choice:focus-visible { transform: rotate(0) translateY(-9px); filter: saturate(1.18); outline: 3px solid #fff3d2; outline-offset: 4px; }
+
+.choice-number {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .15em;
+}
+
+.choice-mark {
+  align-self: center;
+  font: 400 clamp(48px, 6vw, 88px)/1 "Della Respira", Georgia, serif;
+  transform: rotate(var(--turn, -4deg));
+}
+
+.choice-text {
+  max-width: 190px;
+  font: 400 clamp(17px, 1.45vw, 22px)/1.23 "Della Respira", Georgia, serif;
+}
+
+.child-note {
+  position: absolute;
+  right: 4vw;
+  top: 6vh;
+  width: 180px;
+  margin: 0;
+  color: #f2c65b;
+  font: italic 14px/1.35 "Della Respira", Georgia, serif;
+  transform: rotate(4deg);
+}
+
+.consequence {
+  position: absolute;
+  right: clamp(26px, 6vw, 90px);
+  bottom: clamp(30px, 7vh, 72px);
+  width: min(58vw, 720px);
+  padding: clamp(25px, 4vw, 52px);
+  color: var(--ink);
+  background: #fff3d2;
+  box-shadow: 8px 12px 28px rgba(13, 24, 36, .32);
+  clip-path: polygon(1% 2%, 100% 0, 98% 97%, 37% 100%, 0 96%);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px) rotate(.4deg);
+  transition: .45s ease;
+}
+
+.consequence.show { opacity: 1; visibility: visible; transform: translateY(0) rotate(.4deg); }
+.consequence-label { color: #426b94; }
+.consequence p { margin: 18px 0 24px; font: clamp(22px, 2.4vw, 36px)/1.25 "Della Respira", Georgia, serif; }
+.consequence button { border: 0; border-bottom: 2px solid; padding: 7px 0; background: none; font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; cursor: pointer; }
+
+.story-screen {
+  position: fixed;
+  z-index: 16;
+  inset: 0;
+  display: grid;
+  grid-template-columns: minmax(310px, .85fr) minmax(420px, 1.15fr);
+  align-items: center;
+  gap: clamp(35px, 7vw, 110px);
+  padding: clamp(72px, 9vh, 110px) clamp(30px, 7vw, 110px);
+  overflow: hidden;
+  color: var(--ink);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateZ(0) scale(1.025);
+  perspective: 1300px;
+  transition: opacity .45s ease, transform .85s ease;
+}
+
+.encounter { background: #cf7159; }
+.discovery { background: #93a586; }
+.cover.met-someone .encounter,
+.cover.found-something .discovery { opacity: 1; visibility: visible; transform: scale(1); }
+
+.story-count {
+  position: absolute;
+  top: 28px;
+  left: 30px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+.story-shape {
+  position: relative;
+  width: min(34vw, 470px);
+  aspect-ratio: .88;
+  display: grid;
+  place-items: center;
+  background: url('assets/bellebrume-collage.png') 12% 58% / 230% auto no-repeat;
+  clip-path: polygon(8% 1%, 88% 6%, 100% 40%, 91% 94%, 43% 100%, 2% 78%, 0 27%);
+  box-shadow: -22px 26px 0 rgba(37, 55, 69, .18), -42px 48px 0 rgba(37, 55, 69, .08), 14px 22px 35px rgba(37, 55, 69, .28);
+  transform: perspective(950px) rotateX(var(--scene-y, -2deg)) rotateY(calc(12deg + var(--scene-x, 0deg))) rotate(-2deg) translateZ(55px);
+  transform-style: preserve-3d;
+  animation: paper-breathe 7s ease-in-out infinite alternate;
+}
+
+.story-shape::before,
+.story-shape::after {
+  display: none;
+}
+.place-shape { background: url('assets/bellebrume-collage.png') 78% 52% / 245% auto no-repeat; clip-path: polygon(3% 8%, 96% 0, 100% 88%, 68% 100%, 0 93%); }
+.story-shape span { display: none; }
+
+.story-copy {
+  position: relative;
+  z-index: 2;
+  max-width: 610px;
+  padding: clamp(26px, 4vw, 54px);
+  background: #fff3d2;
+  box-shadow: 12px 17px 30px rgba(31, 39, 45, .2);
+  clip-path: polygon(1% 1%, 99% 0, 100% 96%, 72% 100%, 2% 98%, 0 35%);
+  transform: perspective(1000px) rotateY(calc(-3deg + var(--scene-x, 0deg))) translateZ(95px);
+  transform-style: preserve-3d;
+}
+
+.story-kicker { margin: 0 0 13px; color: #426b94; font-size: 13px; font-weight: 600; line-height: 1.4; letter-spacing: .08em; text-transform: uppercase; }
+.story-copy h2 { margin: 0; max-width: 560px; font: 400 clamp(34px, 4vw, 62px)/1.05 "Della Respira", Georgia, serif; letter-spacing: -.035em; text-wrap: balance; }
+.story-copy blockquote { margin: 25px 0; padding-left: 18px; border-left: 4px solid #f2c65b; font: 400 clamp(19px, 1.8vw, 27px)/1.35 "Della Respira", Georgia, serif; }
+.story-question, .discovery-text { margin: 20px 0; max-width: 510px; font-size: 17px; font-weight: 500; line-height: 1.5; }
+
+.response-choices { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; margin-top: 24px; }
+.response-choices button,
+.keep-object {
+  min-height: 66px;
+  border: 2px solid var(--ink);
+  padding: 13px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.35;
+  transition: background .2s ease, color .2s ease, transform .2s ease;
+}
+.response-choices button:hover,
+.keep-object:hover { background: var(--ink); color: #fff3d2; transform: translateY(-3px); }
+
+.found-object { margin: 25px 0; padding: 18px 20px; background: #f2c65b; transform: rotate(-.7deg); }
+.found-object span { display: block; margin-bottom: 5px; font-size: 11px; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; }
+.found-object strong { font: 400 clamp(22px, 2.2vw, 34px)/1.2 "Della Respira", Georgia, serif; }
+.keep-object { width: 100%; }
+.final-note { position: absolute; right: 5vw; bottom: 4vh; color: #fff3d2; font: italic 15px "Della Respira", Georgia, serif; transform: rotate(-3deg); }
+.restart { position: absolute; top: 25px; right: 28px; border: 0; border-bottom: 1px solid; padding: 5px 0; background: none; cursor: pointer; font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+
+@keyframes paper-breathe { from { translate: 0 0; } to { translate: 0 -8px; } }
+@keyframes paper-air { 0%, 55% { transform: perspective(700px) rotate(3.4deg) rotateY(0); } 72% { transform: perspective(700px) rotate(2deg) rotateY(-7deg); } 100% { transform: perspective(700px) rotate(3.8deg) rotateY(3deg); } }
+
 @media (max-width: 760px) {
   .masthead {
     left: 18px;
@@ -232,8 +523,202 @@ h1 span {
   .village { width: 178vw; right: -54vw; bottom: 0; }
   .receipt { display: none; }
   .margin-note { left: 6%; bottom: 5%; }
+
+  .arrival {
+    display: block;
+    overflow-y: auto;
+    padding: 72px 18px 32px;
+    background:
+      linear-gradient(rgba(25, 43, 64, .82), rgba(25, 43, 64, .56)),
+      url('assets/bellebrume-collage.png') center / cover fixed;
+  }
+  .arrival-copy { max-width: 92%; }
+  .arrival h2 { font-size: clamp(38px, 12vw, 58px); }
+  .arrival-lead { max-width: 310px; }
+  .question { margin: 20px 0 15px; }
+  .choices { grid-template-columns: 1fr; gap: 12px; padding-bottom: 30px; }
+  .choice,
+  .choice:nth-child(2),
+  .choice:nth-child(3) {
+    min-height: 106px;
+    transform: rotate(0);
+    display: grid;
+    grid-template-columns: 32px 60px 1fr;
+    align-items: center;
+    gap: 10px;
+  }
+  .choice-mark { font-size: 44px; }
+  .choice-text { max-width: none; font-size: 17px; }
+  .child-note { display: none; }
+  .consequence { position: fixed; left: 18px; right: 18px; bottom: 20px; width: auto; }
+
+  .story-screen {
+    display: block;
+    overflow-y: auto;
+    padding: 72px 18px 35px;
+  }
+  .story-shape { width: 42vw; max-width: 180px; margin: 0 auto 24px; }
+  .story-shape span { font-size: 95px; }
+  .story-copy { padding: 24px 20px 26px; }
+  .story-copy h2 { font-size: clamp(31px, 9vw, 45px); }
+  .story-copy blockquote { margin: 18px 0; font-size: 18px; }
+  .response-choices { grid-template-columns: 1fr; }
+  .final-note { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { transition-duration: .01ms !important; }
+  *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+}
+
+/* Immersive storybook staging: choices live inside the world, never on UI cards. */
+.arrival {
+  display: block;
+  padding: clamp(70px, 8vh, 95px) clamp(28px, 6vw, 90px);
+  background:
+    linear-gradient(90deg, rgba(20, 37, 55, .92) 0%, rgba(20, 37, 55, .5) 35%, transparent 64%),
+    url('assets/bellebrume-collage.png') center / cover no-repeat;
+  animation: village-breathes 16s ease-in-out infinite alternate;
+}
+
+.arrival::after {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  left: 65.5%;
+  top: 31%;
+  width: 5.5%;
+  height: 16%;
+  background: radial-gradient(ellipse, rgba(255,205,91,.5), transparent 68%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+  animation: window-light 7s steps(1,end) infinite;
+}
+
+.arrival-copy { position: relative; z-index: 3; width: min(34vw, 430px); padding-top: 7vh; }
+.arrival h2 { font-size: clamp(46px, 5.4vw, 82px); }
+.arrival .question { margin-top: 25px; }
+
+.arrival .choices { position: absolute; z-index: 4; inset: 0; display: block; pointer-events: none; }
+.arrival .choice,
+.arrival .choice:nth-child(2),
+.arrival .choice:nth-child(3) {
+  position: absolute;
+  width: 74px;
+  height: 74px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  color: #fff3d2;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  transform: perspective(600px) rotateY(var(--tilt, -4deg)) rotate(var(--turn, 0deg));
+  pointer-events: auto;
+}
+.arrival .choice:nth-child(1) { left: 42%; bottom: 16%; --turn: -2deg; }
+.arrival .choice:nth-child(2) { left: 62%; top: 43%; --turn: 1deg; --tilt: 3deg; }
+.arrival .choice:nth-child(3) { right: 4%; bottom: 13%; --turn: -1deg; }
+.arrival .choice:nth-child(1) { animation: world-marker 5.8s ease-in-out infinite alternate; }
+.arrival .choice:nth-child(2) { animation: world-marker 6.6s -2.3s ease-in-out infinite alternate; }
+.arrival .choice:nth-child(3) { animation: world-marker 7.2s -4.1s ease-in-out infinite alternate; }
+.arrival .choice:hover,
+.arrival .choice:focus-visible { color: #fff3d2; background: transparent; transform: perspective(600px) translateZ(45px) rotate(0); outline: none; }
+.arrival .choice-number { display: none; }
+.arrival .choice-mark { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; font-size: 24px; color: #f2c65b; background: rgba(23,40,58,.42); box-shadow: 0 0 0 1px rgba(255,243,210,.7), 0 5px 18px rgba(8,18,27,.45); transition: .3s ease; }
+.arrival .choice:hover .choice-mark,
+.arrival .choice:focus-visible .choice-mark { color: var(--ink); background: #f2c65b; transform: scale(1.14); }
+.arrival .choice-text { position: absolute; left: 50%; bottom: 70px; width: 185px; padding: 8px 10px; color: #fff3d2; background: rgba(23,40,58,.9); font: 500 13px/1.28 "Josefin Sans", sans-serif; opacity: 0; transform: translate(-50%,8px); pointer-events: none; transition: .25s ease; }
+.arrival .choice:hover .choice-text,
+.arrival .choice:focus-visible .choice-text { opacity: 1; transform: translate(-50%,0); }
+
+.scene-touch {
+  position: absolute;
+  z-index: 5;
+  right: 18vw;
+  top: 46%;
+  width: 86px;
+  height: 86px;
+  border: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(242,198,91,.72) 0 8%, rgba(242,198,91,.12) 10% 35%, transparent 37%);
+  cursor: pointer;
+  animation: quiet-pulse 3.8s ease-in-out infinite;
+}
+.scene-touch:hover,
+.scene-touch:focus-visible { transform: scale(1.12) translateZ(60px); outline: 1px solid rgba(255,243,210,.72); }
+
+.story-screen {
+  display: block;
+  padding: clamp(72px, 9vh, 105px) clamp(30px, 6vw, 85px);
+  color: #fff3d2;
+  background:
+    linear-gradient(90deg, rgba(23,40,58,.93), rgba(23,40,58,.45) 48%, rgba(23,40,58,.08)),
+    url('assets/bellebrume-collage.png') center / 124% auto no-repeat;
+}
+.discovery {
+  background:
+    linear-gradient(90deg, rgba(41,57,51,.94), rgba(41,57,51,.42) 54%, rgba(41,57,51,.1)),
+    url('assets/bellebrume-collage.png') 82% 55% / 155% auto no-repeat;
+}
+.story-screen::before { opacity: .8; }
+
+.story-shape {
+  position: absolute;
+  z-index: 1;
+  right: 5vw;
+  top: 14vh;
+  width: min(44vw, 590px);
+  aspect-ratio: 1.05;
+  opacity: .94;
+  box-shadow: -25px 32px 0 rgba(242,198,91,.25), -48px 58px 0 rgba(37,55,69,.16), 18px 26px 45px rgba(10,20,30,.48);
+}
+
+.story-copy {
+  position: relative;
+  z-index: 3;
+  width: min(43vw, 600px);
+  max-width: none;
+  padding: 0;
+  color: #fff3d2;
+  background: transparent;
+  box-shadow: none;
+  clip-path: none;
+  transform: translateZ(100px);
+}
+.story-kicker { color: #f2c65b; }
+.story-copy h2 { text-shadow: 0 3px 12px rgba(8,18,27,.9); }
+.story-copy blockquote { border-left-color: #f2c65b; text-shadow: 0 2px 8px rgba(8,18,27,.85); }
+.story-question,
+.discovery-text { text-shadow: 0 2px 7px rgba(8,18,27,.9); }
+.response-choices { max-width: 560px; }
+.response-choices button,
+.keep-object { color: #fff3d2; border-color: #fff3d2; background: rgba(23,40,58,.78); }
+.response-choices button:hover,
+.keep-object:hover { color: var(--ink); background: #f2c65b; }
+.found-object { max-width: 520px; color: var(--ink); box-shadow: 9px 13px 28px rgba(10,20,30,.36); }
+
+@keyframes village-breathes { from { background-position: 50% 50%; } to { background-position: 51.2% 49.4%; } }
+@keyframes window-light { 0%, 24%, 28%, 74%, 100% { opacity: .52; } 25%, 27% { opacity: .18; } 75%, 79% { opacity: .72; } }
+@keyframes world-marker { from { translate: 0 0; } to { translate: 0 -7px; } }
+@keyframes quiet-pulse { 0%,100% { opacity: .5; } 50% { opacity: 1; } }
+
+@media (max-width: 760px) {
+  .arrival { padding: 65px 18px 24px; background-position: 58% center; }
+  .arrival-copy { width: 92%; padding-top: 0; }
+  .arrival h2 { font-size: clamp(38px, 11vw, 56px); }
+  .arrival .choices { position: absolute; inset: 0; display: block; margin: 0; padding: 0; }
+  .arrival .choice,
+  .arrival .choice:nth-child(1),
+  .arrival .choice:nth-child(2),
+  .arrival .choice:nth-child(3) { width: 62px; height: 62px; min-height: 0; transform: none; }
+  .arrival .choice:nth-child(1) { left: 43%; top: 68%; }
+  .arrival .choice:nth-child(2) { left: 66%; top: 47%; }
+  .arrival .choice:nth-child(3) { left: 82%; top: 70%; }
+  .arrival .choice-text { width: 150px; bottom: 58px; }
+  .scene-touch { right: 13vw; top: 42%; }
+  .story-screen { padding: 70px 18px 30px; overflow-y: auto; background-size: cover; }
+  .story-shape { position: relative; top: auto; right: auto; width: 74vw; max-width: 360px; margin: 0 auto 25px; aspect-ratio: 1.35; }
+  .story-copy { width: 100%; padding: 20px; background: rgba(23,40,58,.86); }
+  .discovery .story-copy { background: rgba(41,57,51,.88); }
+  .response-choices { grid-template-columns: 1fr; }
 }

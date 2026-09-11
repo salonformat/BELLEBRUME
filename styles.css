@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Della+Respira&family=Josefin+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+
 :root {
   --butter: #f2eadb;
   --paper: #f4eddc;
-  --ink: #282720;
+  --ink: #222a32;
   --terra: #b95d45;
   --sage: #727c67;
   --blue: #8da9bd;
@@ -13,7 +15,8 @@ body {
   margin: 0;
   background: var(--butter);
   color: var(--ink);
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Josefin Sans", "Avenir Next", Arial, sans-serif;
+  font-size: 16px;
 }
 
 button { color: inherit; font: inherit; }
@@ -45,15 +48,18 @@ button { color: inherit; font: inherit; }
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 10px;
-  letter-spacing: .19em;
+  color: var(--paper);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-shadow: 0 1px 5px rgba(20, 27, 35, .55);
   text-transform: uppercase;
 }
 
 .sound {
   border: 0;
   border-bottom: 1px solid currentColor;
-  padding: 4px 0;
+  padding: 6px 0;
   background: transparent;
   cursor: pointer;
 }
@@ -64,40 +70,45 @@ button { color: inherit; font: inherit; }
 .intro {
   position: absolute;
   z-index: 8;
-  top: 27%;
-  left: clamp(28px, 6vw, 96px);
-  width: min(38vw, 520px);
+  top: 41%;
+  left: clamp(28px, 5vw, 78px);
+  width: min(38vw, 490px);
+  padding: clamp(20px, 2.4vw, 34px) clamp(22px, 2.8vw, 40px) 30px;
+  background: rgba(255, 244, 215, .96);
+  box-shadow: 5px 9px 22px rgba(15, 28, 45, .24);
+  clip-path: polygon(1% 1%, 99% 0, 100% 97%, 64% 100%, 2% 98%, 0 42%);
   transform: translateY(-49%) rotate(-.35deg);
 }
 
 .eyebrow {
   margin: 0 0 18px 7px;
-  font-family: Georgia, serif;
-  font-size: clamp(12px, 1.1vw, 16px);
+  font-family: "Della Respira", Georgia, serif;
+  font-size: clamp(13px, 1.05vw, 16px);
   font-style: italic;
 }
 
 h1 {
   margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(66px, 8.4vw, 142px);
+  font-family: "Della Respira", Georgia, serif;
+  font-size: clamp(54px, 6.8vw, 110px);
   font-weight: 400;
-  letter-spacing: -.075em;
-  line-height: .71;
+  letter-spacing: -.055em;
+  line-height: .78;
 }
 
 h1 span {
   display: block;
   margin-left: .52em;
-  color: var(--terra);
+  color: #426b94;
   font-style: italic;
 }
 
 .invitation {
   width: 250px;
   margin: 26px 0 19px 10px;
-  font-size: 14px;
-  line-height: 1.42;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.48;
 }
 
 .enter {
@@ -110,8 +121,9 @@ h1 span {
   padding: 8px 2px 7px;
   background: transparent;
   cursor: pointer;
-  font-size: 12px;
-  letter-spacing: .12em;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .1em;
   text-transform: uppercase;
   transition: gap .25s ease, color .25s ease;
 }
@@ -134,7 +146,8 @@ h1 span {
 .village img {
   display: block;
   width: 100%;
-  mix-blend-mode: multiply;
+  mix-blend-mode: normal;
+  filter: saturate(1.3) contrast(1.13) brightness(.94);
 }
 
 .receipt {
@@ -144,17 +157,18 @@ h1 span {
   top: 7vh;
   width: 142px;
   padding: 17px 15px 24px;
-  background: rgba(244, 237, 220, .88);
+  background: rgba(255, 244, 215, .97);
   box-shadow: 1px 2px 0 rgba(40,39,32,.15);
-  font-family: "Courier New", monospace;
-  font-size: 9px;
+  font-family: "Josefin Sans", Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
   line-height: 1.7;
   transform: rotate(3.4deg);
 }
 
 .receipt span, .receipt em { display: block; }
 .receipt b { display: flex; justify-content: space-between; font-weight: 400; }
-.receipt em { margin-top: 13px; font-family: Georgia, serif; }
+.receipt em { margin-top: 13px; font-family: "Della Respira", Georgia, serif; }
 
 .margin-note {
   position: absolute;
@@ -162,9 +176,12 @@ h1 span {
   left: 44%;
   bottom: 4%;
   margin: 0;
-  font-family: "Comic Sans MS", "Bradley Hand", cursive;
-  font-size: 13px;
-  line-height: 1.1;
+  color: var(--paper);
+  font-family: "Della Respira", Georgia, serif;
+  font-size: 14px;
+  font-style: italic;
+  line-height: 1.25;
+  text-shadow: 0 1px 5px rgba(20, 27, 35, .65);
   transform: rotate(-7deg);
 }
 
@@ -183,7 +200,7 @@ h1 span {
 }
 
 .remembered.show { opacity: 1; visibility: visible; }
-.remembered p { font: italic clamp(22px, 3vw, 46px)/1.2 Georgia, serif; }
+.remembered p { font: clamp(22px, 3vw, 46px)/1.25 "Della Respira", Georgia, serif; }
 .remembered button {
   border: 0;
   border-bottom: 1px solid;
@@ -196,9 +213,14 @@ h1 span {
 }
 
 @media (max-width: 760px) {
-  .masthead { left: 18px; right: 18px; }
+  .masthead {
+    left: 18px;
+    right: 18px;
+    color: var(--ink);
+    text-shadow: none;
+  }
   .masthead > span { max-width: 130px; }
-  .intro { top: 25%; left: 22px; width: 88vw; }
+  .intro { top: 31%; left: 18px; width: calc(100vw - 36px); }
   h1 { font-size: clamp(64px, 23vw, 105px); }
   .invitation { margin-top: 27px; }
   .village { width: 178vw; right: -54vw; bottom: 0; }

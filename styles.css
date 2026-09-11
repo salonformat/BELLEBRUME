@@ -148,13 +148,7 @@ h1 span {
 
 .village::before,
 .village::after {
-  content: '';
-  position: absolute;
-  z-index: 2;
-  inset: 0;
-  background: url('assets/bellebrume-collage.png') center / 100% 100% no-repeat;
-  pointer-events: none;
-  will-change: transform;
+  display: none;
 }
 
 .village::before {
@@ -570,13 +564,34 @@ h1 span {
   *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
 }
 
+/* Visible paper-theatre motion on the opening scene. */
+.opening-motion { position: fixed; z-index: 4; inset: 0; pointer-events: none; transform-style: preserve-3d; }
+.opening-light { position: absolute; border-radius: 3px; background: #ffd66f; mix-blend-mode: screen; filter: blur(4px); box-shadow: 0 0 24px 8px rgba(255,199,77,.42); animation: inhabited-light 5.7s steps(1,end) infinite; }
+.light-one { left: 66.2%; top: 29.5%; width: 2.7%; height: 10.5%; }
+.light-two { left: 18.8%; top: 33%; width: 3.1%; height: 9%; animation-delay: -2.2s; animation-duration: 7.9s; }
+.laundry-line { position: absolute; left: 29.3%; top: 43.4%; width: 15.5%; height: 10%; transform-origin: 10% 0; animation: line-in-wind 4.6s ease-in-out infinite alternate; }
+.laundry-line i { position: absolute; top: 4%; width: 19%; height: 48%; background: #e7dec5; border-radius: 2px 1px 4px 2px; box-shadow: 3px 5px 8px rgba(12,23,34,.22); transform-origin: 50% 0; animation: cloth-in-wind 2.8s ease-in-out infinite alternate; opacity: .94; }
+.laundry-line i:nth-child(1) { left: 13%; }
+.laundry-line i:nth-child(2) { left: 39%; background: #a95445; animation-delay: -.8s; }
+.laundry-line i:nth-child(3) { left: 64%; width: 25%; background: #d8d1be; animation-delay: -1.5s; }
+.paper-leaf { position: absolute; left: 3%; bottom: 5%; width: 38px; height: 92px; border-radius: 80% 0 70% 10%; background: #526c5c; box-shadow: 7px 8px 13px rgba(12,23,34,.27); transform-origin: 50% 100%; animation: leaf-sway 3.9s ease-in-out infinite alternate; }
+.leaf-two { left: 91%; bottom: 8%; width: 29px; height: 72px; background: #7c8a68; animation-delay: -1.7s; }
+.cover.arrived .opening-motion,
+.cover.met-someone .opening-motion,
+.cover.found-something .opening-motion { opacity: 0; transition: opacity .5s ease; }
+
+@keyframes inhabited-light { 0%,20%,24%,62%,66%,100% { opacity: .7; } 21%,23%,63%,65% { opacity: .2; } 48% { opacity: 1; } }
+@keyframes line-in-wind { from { transform: rotate(-1deg) translate3d(-3px,0,45px); } to { transform: rotate(1.5deg) translate3d(5px,3px,65px); } }
+@keyframes cloth-in-wind { from { transform: perspective(220px) rotateY(-9deg) skewY(-2deg); } to { transform: perspective(220px) rotateY(18deg) skewY(3deg); } }
+@keyframes leaf-sway { from { transform: perspective(400px) rotate(-8deg) rotateY(-10deg) translateZ(75px); } to { transform: perspective(400px) rotate(9deg) rotateY(12deg) translateZ(95px); } }
+
 /* Immersive storybook staging: choices live inside the world, never on UI cards. */
 .arrival {
   display: block;
   padding: clamp(70px, 8vh, 95px) clamp(28px, 6vw, 90px);
   background:
     linear-gradient(90deg, rgba(20, 37, 55, .92) 0%, rgba(20, 37, 55, .5) 35%, transparent 64%),
-    url('assets/bellebrume-collage.png') center / cover no-repeat;
+    url('assets/scene-bakery.png') center / cover no-repeat;
   animation: village-breathes 16s ease-in-out infinite alternate;
 }
 
@@ -653,12 +668,12 @@ h1 span {
   color: #fff3d2;
   background:
     linear-gradient(90deg, rgba(23,40,58,.93), rgba(23,40,58,.45) 48%, rgba(23,40,58,.08)),
-    url('assets/bellebrume-collage.png') center / 124% auto no-repeat;
+    url('assets/scene-square.png') center / cover no-repeat;
 }
 .discovery {
   background:
     linear-gradient(90deg, rgba(41,57,51,.94), rgba(41,57,51,.42) 54%, rgba(41,57,51,.1)),
-    url('assets/bellebrume-collage.png') 82% 55% / 155% auto no-repeat;
+    url('assets/scene-greenhouse.png') center / cover no-repeat;
 }
 .story-screen::before { opacity: .8; }
 
@@ -672,6 +687,36 @@ h1 span {
   opacity: .94;
   box-shadow: -25px 32px 0 rgba(242,198,91,.25), -48px 58px 0 rgba(37,55,69,.16), 18px 26px 45px rgba(10,20,30,.48);
 }
+.encounter .story-shape { background-image: url('assets/scene-square.png'); background-position: 77% 48%; background-size: 185% auto; }
+.discovery .story-shape { background-image: url('assets/scene-greenhouse.png'); background-position: 52% 50%; background-size: 180% auto; }
+
+.arrival::before,
+.story-screen::after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  pointer-events: none;
+  background: inherit;
+  background-image: url('assets/scene-bakery.png');
+  background-position: center;
+  background-size: cover;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0 61%, #000 80% 100%);
+  mask-image: linear-gradient(to bottom, transparent 0 61%, #000 80% 100%);
+  filter: drop-shadow(0 -15px 18px rgba(10,20,30,.3));
+  transform: translate3d(var(--near-x,0), var(--near-y,0), 85px) scale(1.025);
+  animation: foreground-breathe 7s ease-in-out infinite alternate;
+}
+.encounter::after { background-image: url('assets/scene-square.png'); }
+.discovery::after { background-image: url('assets/scene-greenhouse.png'); }
+.story-screen .story-copy,
+.story-screen .story-shape,
+.arrival-copy,
+.arrival .choices { position: relative; z-index: 4; }
+.story-screen .story-shape { animation: paper-breathe 7s ease-in-out infinite alternate, paper-shadow 5s ease-in-out infinite alternate; }
+.discovery::before { animation: window-light 4.9s steps(1,end) infinite; }
+@keyframes foreground-breathe { from { translate: -5px 2px; } to { translate: 7px -4px; } }
+@keyframes paper-shadow { from { box-shadow: -18px 25px 0 rgba(242,198,91,.16), 15px 24px 34px rgba(8,18,27,.3); } to { box-shadow: -29px 35px 0 rgba(242,198,91,.24), 24px 36px 45px rgba(8,18,27,.46); } }
 
 .story-copy {
   position: relative;

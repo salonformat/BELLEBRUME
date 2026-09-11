@@ -86,6 +86,8 @@ root.addEventListener('pointermove', event => {
   const nx = event.clientX / innerWidth - .5; const ny = event.clientY / innerHeight - .5;
   root.style.setProperty('--scene-x', `${nx * 5}deg`); root.style.setProperty('--scene-y', `${ny * -4}deg`);
   root.style.setProperty('--near-x', `${nx * 24}px`); root.style.setProperty('--near-y', `${ny * 13}px`);
+  root.style.setProperty('--far-x', `${nx * -14}px`); root.style.setProperty('--far-y', `${ny * -8}px`);
+  root.style.setProperty('--mid-x', `${nx * 10}px`); root.style.setProperty('--mid-y', `${ny * 6}px`);
   village.style.setProperty('--x', `${nx * -16}px`); village.style.setProperty('--y', `${ny * -9}px`);
   village.style.setProperty('--near-x', `${nx * 22}px`); village.style.setProperty('--near-y', `${ny * 12}px`);
   village.style.setProperty('--mid-x', `${nx * 11}px`); village.style.setProperty('--mid-y', `${ny * 6}px`);

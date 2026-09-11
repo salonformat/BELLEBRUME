@@ -718,6 +718,45 @@ h1 span {
 @keyframes foreground-breathe { from { translate: -5px 2px; } to { translate: 7px -4px; } }
 @keyframes paper-shadow { from { box-shadow: -18px 25px 0 rgba(242,198,91,.16), 15px 24px 34px rgba(8,18,27,.3); } to { box-shadow: -29px 35px 0 rgba(242,198,91,.24), 24px 36px 45px rgba(8,18,27,.46); } }
 
+/* Deep animated collage layers - intentionally torn, tactile and visibly separate. */
+.paper-theatre { position: fixed; z-index: 3; inset: 0; overflow: hidden; pointer-events: none; perspective: 1050px; transform-style: preserve-3d; }
+.paper-theatre .scrap { position: absolute; display: block; background-repeat: no-repeat; filter: saturate(1.08) contrast(1.04) drop-shadow(18px 24px 16px rgba(9,18,27,.38)); transform-style: preserve-3d; will-change: transform; }
+.theatre-opening .scrap { background-image: url('assets/bellebrume-collage.png'); background-size: 100vw auto; }
+.opening-window { left: 8%; top: 16%; width: 24vw; height: 43vh; background-position: 5% 24%; clip-path: polygon(3% 5%,94% 0,100% 88%,91% 100%,7% 96%,0 39%); transform: translate3d(var(--far-x),var(--far-y),95px) rotate(-1.8deg); animation: scrap-float-a 6.4s ease-in-out infinite alternate; }
+.opening-roof { right: 23%; top: 11%; width: 27vw; height: 33vh; background-position: 66% 18%; clip-path: polygon(5% 12%,92% 0,100% 82%,87% 100%,0 91%); transform: translate3d(var(--mid-x),var(--mid-y),58px); animation: scrap-float-b 8s ease-in-out infinite alternate; }
+.opening-person { left: 13.8%; top: 54%; width: 11vw; height: 28vh; background-position: 12% 76%; clip-path: polygon(15% 0,89% 8%,100% 88%,61% 100%,0 82%,5% 20%); transform-origin: 50% 100%; transform: translateZ(125px); animation: person-at-window 5.3s ease-in-out infinite; }
+.opening-street { left: 0; right: 0; bottom: -2%; width: 100%; height: 30vh; background-position: center bottom; -webkit-mask-image: linear-gradient(transparent,#000 38%); mask-image: linear-gradient(transparent,#000 38%); transform: translate3d(var(--near-x),var(--near-y),135px) scale(1.035); animation: foreground-breathe 5.5s ease-in-out infinite alternate; }
+
+.theatre-bakery .scrap { background-image: url('assets/scene-bakery.png'); background-size: 100vw auto; }
+.bakery-bread { left:-2%; bottom:-3%; width:31vw; height:39vh; background-position:0 100%; clip-path:polygon(0 8%,88% 0,100% 100%,0 100%); transform:translate3d(var(--near-x),var(--near-y),150px); animation:scrap-float-a 5s ease-in-out infinite alternate; }
+.bakery-cyclist { left:39%; bottom:8%; width:19vw; height:46vh; background-position:49% 84%; clip-path:polygon(12% 0,91% 4%,100% 91%,58% 100%,0 88%,6% 20%); transform-origin:50% 100%; transform:translateZ(112px); animation:walking-paper 4.7s ease-in-out infinite; }
+.bakery-laundry { right:2%; top:8%; width:31vw; height:29vh; background-position:86% 18%; clip-path:polygon(2% 9%,96% 0,100% 79%,86% 100%,0 87%); transform-origin:50% 0; transform:translateZ(86px); animation:laundry-paper 3.7s ease-in-out infinite alternate; }
+.bakery-door { left:55%; top:24%; width:14vw; height:45vh; background-position:64% 50%; clip-path:polygon(5% 0,96% 3%,100% 96%,0 100%); transform-origin:8% 50%; animation:door-paper 9s ease-in-out infinite; }
+
+.theatre-square .scrap { background-image:url('assets/scene-square.png'); background-size:100vw auto; }
+.square-fountain { left:-4%; bottom:-4%; width:43vw; height:62vh; background-position:0 100%; clip-path:polygon(0 4%,94% 0,100% 100%,0 100%); transform:translate3d(var(--near-x),var(--near-y),155px); animation:fountain-paper 6s ease-in-out infinite alternate; }
+.square-teacher { left:57%; top:25%; width:19vw; height:52vh; background-position:71% 58%; clip-path:polygon(11% 0,92% 5%,100% 92%,61% 100%,0 88%,5% 15%); transform:translateZ(105px); animation:person-at-window 5.8s ease-in-out infinite; }
+.square-door { left:69%; top:13%; width:18vw; height:53vh; background-position:78% 36%; clip-path:polygon(4% 1%,97% 0,100% 96%,0 100%); transform-origin:10% 50%; animation:door-paper 8.4s -2s ease-in-out infinite; }
+.square-umbrella { right:-1%; bottom:1%; width:22vw; height:48vh; background-position:100% 91%; clip-path:polygon(12% 0,94% 7%,100% 100%,0 91%); transform:translateZ(125px); animation:walking-paper 5.1s -1.4s ease-in-out infinite; }
+
+.theatre-greenhouse .scrap { background-image:url('assets/scene-greenhouse.png'); background-size:100vw auto; }
+.greenhouse-leaves { left:-3%; top:0; width:33vw; height:100vh; background-position:0 50%; -webkit-mask-image:linear-gradient(90deg,#000 65%,transparent); mask-image:linear-gradient(90deg,#000 65%,transparent); transform-origin:0 55%; transform:translate3d(var(--near-x),var(--near-y),165px); animation:big-leaf-stage 4.8s ease-in-out infinite alternate; }
+.greenhouse-people { left:32%; bottom:3%; width:35vw; height:63vh; background-position:49% 84%; clip-path:polygon(4% 4%,94% 0,100% 91%,72% 100%,0 94%); transform:translateZ(110px); animation:walking-paper 6.2s ease-in-out infinite; }
+.greenhouse-door { left:39%; top:9%; width:22vw; height:69vh; background-position:49% 38%; clip-path:polygon(2% 1%,97% 0,100% 98%,0 94%); transform-origin:8% 50%; animation:door-paper 9.5s -3s ease-in-out infinite; }
+.greenhouse-light { left:16%; top:31%; width:20vw; height:38vh; background-position:25% 52%; clip-path:polygon(8% 2%,95% 8%,100% 91%,0 100%); transform:translateZ(128px); animation:lantern-paper 4.2s steps(1,end) infinite; }
+
+@keyframes scrap-float-a { from{translate:-5px 4px;rotate:-.8deg} to{translate:8px -7px;rotate:1deg} }
+@keyframes scrap-float-b { from{translate:5px -3px;rotate:.5deg} to{translate:-7px 6px;rotate:-1deg} }
+@keyframes person-at-window { 0%,100%{translate:0 2px;rotate:-.5deg} 45%{translate:4px -4px;rotate:1deg} 52%{translate:7px -3px;rotate:1.4deg} }
+@keyframes walking-paper { 0%,100%{translate:-7px 0;rotate:-.6deg} 50%{translate:9px -3px;rotate:1deg} }
+@keyframes laundry-paper { from{transform:perspective(700px) translateZ(85px) rotateX(-2deg) rotateY(-6deg) rotate(-1deg)} to{transform:perspective(700px) translateZ(110px) rotateX(3deg) rotateY(10deg) rotate(1.5deg)} }
+@keyframes door-paper { 0%,20%,100%{transform:perspective(800px) translateZ(92px) rotateY(0)} 45%,72%{transform:perspective(800px) translateZ(110px) rotateY(-22deg)} }
+@keyframes fountain-paper { from{translate:-7px 4px;filter:saturate(1.06) drop-shadow(15px 20px 13px rgba(9,18,27,.35))} to{translate:9px -5px;filter:saturate(1.12) drop-shadow(28px 34px 22px rgba(9,18,27,.5))} }
+@keyframes big-leaf-stage { from{transform:perspective(700px) translate3d(-8px,4px,145px) rotateY(-5deg)} to{transform:perspective(700px) translate3d(13px,-5px,185px) rotateY(8deg)} }
+@keyframes lantern-paper { 0%,22%,26%,71%,100%{opacity:.94;filter:brightness(1) drop-shadow(18px 24px 16px rgba(9,18,27,.38))} 23%,25%,72%,75%{opacity:.72;filter:brightness(1.22) drop-shadow(0 0 24px rgba(255,196,68,.75))} }
+
+@media(max-width:760px){.paper-theatre .scrap{background-size:178vw auto}.opening-window{width:45vw}.opening-person{width:24vw}.bakery-cyclist,.square-teacher{width:34vw}.theatre-opening .opening-roof{display:none}.paper-theatre{opacity:.72}}
+
 .story-copy {
   position: relative;
   z-index: 3;

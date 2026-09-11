@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#e8c35c" />
+  <title>Bellebrume — Le village se souvient</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="cover" aria-labelledby="title">
+    <div class="grain" aria-hidden="true"></div>
+
+    <header class="masthead">
+      <span>Une histoire qui se souvient</span>
+      <button class="sound" type="button" aria-pressed="false">écouter le village</button>
+    </header>
+
+    <section class="intro">
+      <p class="eyebrow">Quelque part, après le dernier virage</p>
+      <h1 id="title">Belle<span>brume</span></h1>
+      <p class="invitation">Le village ne reçoit jamais deux fois la même personne.</p>
+      <button class="enter" type="button">
+        <span>Entrer doucement</span>
+        <i aria-hidden="true">→</i>
+      </button>
+    </section>
+
+    <figure class="village" aria-label="Une carte peinte de Bellebrume">
+      <img src="assets/bellebrume-collage.png" alt="Les maisons irrégulières et peintes à la main de Bellebrume" />
+    </figure>
+
+    <aside class="receipt" aria-hidden="true">
+      <span>épicerie du passage</span>
+      <b>3 figues</b>
+      <b>1 fil rouge</b>
+      <b>un souvenir</b>
+      <em>payé une autre fois</em>
+    </aside>
+
+    <p class="margin-note">ne pas suivre<br />la ligne droite</p>
+
+    <div class="remembered" role="status" aria-live="polite">
+      <p>La fenêtre bleue était fermée hier.</p>
+      <button type="button">continuer</button>
+    </div>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

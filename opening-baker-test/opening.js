@@ -10,6 +10,7 @@ later(5550, 'shadow-leaves');
 window.setTimeout(() => {
   scene.classList.add('door-ready');
   doorReady = true;
+  window.setTimeout(() => scene.classList.add('door-open'), 420);
 }, 6500);
 
 function approach(clientX, clientY) {

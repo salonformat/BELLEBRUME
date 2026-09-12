@@ -1,0 +1,36 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#536f91"><title>Bellebrume — Le village se souvient</title><link rel="stylesheet" href="experience.css"><link rel="stylesheet" href="enhancements.css?v=8"></head><body>
+<main class="experience" id="experience">
+  <header><span>Une histoire qui se souvient</span><button id="sound" aria-pressed="false">écouter le village</button></header>
+  <section class="scene opening active" data-scene="1" aria-label="Entrée de Bellebrume">
+    <img class="art" src="assets/opening-static-approved-v1.png" alt="Bellebrume au crépuscule, peint à la main">
+    <div class="window-lights"><i></i><i></i><i></i></div><div class="wind-stroke"></div>
+    <img class="opening-laundry" src="assets/opening-laundry.png" alt="Du linge bouge dans le vent">
+    <div class="opening-copy"><p>Quelque part, après le dernier virage</p><h1>Belle<span>brume</span></h1><em>Le village ne reçoit jamais deux fois la même personne.</em><button class="enter" data-next="2">Entrer doucement <b>→</b></button></div>
+    <aside><small>épicerie du passage</small><span>3 figues</span><span>1 fil rouge</span><span>un souvenir</span><i>payé une autre fois</i></aside>
+  </section>
+  <section class="scene lane" data-scene="2" aria-hidden="true" aria-label="La ruelle de la boulangerie">
+    <img class="art" src="assets/screen-02-animated-base.png" alt="La boulangerie, Lucie avec son vélo et une trace de farine bleue">
+    <div class="sprite lane-baker" aria-hidden="true"><img src="assets/lane-baker-1.png"><img src="assets/lane-baker-2.png"><img src="assets/lane-baker-3.png"></div>
+    <div class="sprite lane-postwoman" aria-hidden="true"><img src="assets/lane-postwoman-1.png"><img src="assets/lane-postwoman-2.png"><img src="assets/lane-postwoman-3.png"><img src="assets/lane-postwoman-4.png"></div>
+    <div class="lane-leaves"></div>
+    <div class="lamp-glow"></div><div class="flour-glow"><i></i><i></i><i></i><i></i><i></i></div>
+    <p class="whisper w2">Quelque chose de bleu s’échappe de la boulangerie.</p>
+    <button class="hotspot flour" data-next="3" aria-label="Suivre la farine bleue sous le pavé"><span>SUIS LA FARINE BLEUE <b>↓</b></span></button>
+  </section>
+  <section class="scene school" data-scene="3" aria-hidden="true" aria-label="La cour de l’ancienne école">
+    <img class="art" src="assets/screen-03-animated-base.png" alt="Deux institutrices, des enfants et une petite porte dans la cour de l’école">
+    <div class="sprite school-grandmother" aria-hidden="true"><img src="assets/school-grandmother-1.png"><img src="assets/school-grandmother-2.png"><img src="assets/school-grandmother-3.png"></div>
+    <div class="sprite school-child" aria-hidden="true"><img src="assets/school-child-1.png"><img src="assets/school-child-2.png"><img src="assets/school-child-3.png"></div>
+    <div class="classroom-light"></div><div class="paper-stir"></div><div class="lantern"></div>
+    <p class="whisper w3">Le dessin et la petite porte ont la même poignée.</p>
+    <button class="hotspot little-door" data-next="4" aria-label="Toucher la petite porte dessinée"><span>TOUCHE LA PETITE PORTE <b>→</b></span></button>
+  </section>
+  <section class="scene pool" data-scene="4" aria-hidden="true" aria-label="La piscine cachée sous l’école">
+    <img class="art" src="assets/screen-04.png" alt="Une piscine vide et la silhouette impossible d’une nageuse">
+    <div class="pool-light"></div><div class="swimmer"></div><div class="footprint-glow"></div>
+    <p class="whisper w4">Il n’y a pas d’eau. Pourtant quelqu’un vient de faire demi-tour.</p>
+    <button class="hotspot number" aria-label="Observer le chiffre trois"><span>TOUCHE LE CARREAU 3 <b>↓</b></span></button>
+    <div class="trace" role="status"><p>Quelque chose se souvient de tes pas.</p><button id="restart">revenir autrement</button></div>
+  </section>
+  <div class="grain"></div><div class="cursor" aria-hidden="true"></div>
+</main><script src="experience.js?v=9"></script></body></html>

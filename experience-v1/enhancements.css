@@ -1,0 +1,178 @@
+.hotspot span {
+  padding: 10px 14px;
+  background: rgba(242, 234, 219, .95);
+  color: #263f61;
+  box-shadow: 5px 7px 0 rgba(38, 63, 97, .34);
+  text-shadow: none;
+  font: 600 13px/1.15 "Helvetica Neue", Arial, sans-serif;
+  letter-spacing: .08em;
+  transform: translate(-50%, 10px) rotate(-1deg);
+}
+.scene.ready .hotspot span { opacity: .97; transform: translate(-50%, 0) rotate(-1deg); }
+.hotspot span b { display: inline-block; margin-left: 5px; color: #b95d45; font-size: 18px; }
+.w2,.w3,.w4 { padding: 10px 13px; background: rgba(38,63,97,.84); box-shadow: 4px 6px 0 rgba(232,195,92,.25); color:#fff8e8; text-shadow:none; }
+.flour-glow { left:53%; bottom:5%; width:27%; height:43%; background:none; filter:none; mix-blend-mode:screen; animation:none; }
+.flour-glow i { position:absolute; width:7px; height:7px; border-radius:48% 52% 45% 55%; background:#83ccff; box-shadow:0 0 8px #79bcf3; opacity:0; }
+.flour-glow i:nth-child(1){left:72%;top:2%}.flour-glow i:nth-child(2){left:61%;top:24%}.flour-glow i:nth-child(3){left:48%;top:47%}.flour-glow i:nth-child(4){left:31%;top:68%}.flour-glow i:nth-child(5){left:12%;top:88%}
+.lane.ready .flour-glow i { animation:grainTravel 2.8s ease-in-out infinite; }
+.lane.ready .flour-glow i:nth-child(2){animation-delay:.3s}.lane.ready .flour-glow i:nth-child(3){animation-delay:.6s}.lane.ready .flour-glow i:nth-child(4){animation-delay:.9s}.lane.ready .flour-glow i:nth-child(5){animation-delay:1.2s}
+.lane.ready .lamp-glow { animation:answerLight 5.8s ease-in-out infinite; }
+.bike-shadow { display:none; }
+.school.ready .paper-stir { animation:paperLift 5.4s cubic-bezier(.2,.7,.3,1) infinite; }
+.school.ready .little-door::before { content:""; position:absolute; inset:24% 28%; border-radius:45%; box-shadow:0 0 18px 8px rgba(123,187,235,.55); animation:doorAnswer 4.5s ease-in-out infinite; }
+.pool.ready .swimmer { animation:swimOnce 8s cubic-bezier(.35,0,.3,1) 1.5s both; }
+.pool.ready .footprint-glow { animation:footsteps 3.6s ease-in-out infinite; }
+@keyframes grainTravel { 0%{opacity:0;transform:translate(-5px,-4px) scale(.6)}35%{opacity:.95}72%{opacity:.55}100%{opacity:0;transform:translate(8px,12px) scale(1.25)} }
+@keyframes answerLight { 0%,9%,14%,100%{opacity:.28}11%{opacity:.06}45%,68%{opacity:.5}70%{opacity:.22} }
+@keyframes paperLift { 0%,72%,100%{transform:rotate(0) translateY(0)}80%{transform:rotate(4deg) translateY(-8px)}88%{transform:rotate(-2deg) translateY(-3px)} }
+@keyframes doorAnswer { 0%,65%,100%{opacity:0;transform:scale(.7)}73%{opacity:.75;transform:scale(1)}86%{opacity:.25;transform:scale(.88)} }
+@keyframes swimOnce { 0%{transform:translateX(20%) rotate(-18deg);opacity:0}18%{opacity:.7}68%{opacity:.55}100%{transform:translateX(-45%) rotate(-18deg);opacity:0} }
+.opening-copy,.opening-copy p,.opening-copy em,.opening h1,.opening h1 span { color:#f6ecd7; text-shadow:0 2px 2px rgba(24,39,59,.9),0 0 14px rgba(24,39,59,.75); }
+.opening-copy { padding:18px 22px 20px; background:linear-gradient(90deg,rgba(38,63,97,.78),rgba(38,63,97,.18) 83%,transparent); }
+.opening h1 span { color:#f6ecd7; }
+.enter { color:#f6ecd7; border-color:#f6ecd7; text-shadow:0 2px 5px #263f61; }
+.sprite { position:absolute; z-index:8; pointer-events:none; }
+.sprite img { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; opacity:0; filter:saturate(.88) contrast(1.02); }
+.opening-baker { left:41.2%; top:59%; width:11.5%; height:22%; }
+.opening-woman { left:24%; top:61%; width:14%; height:32%; animation:womanAcross 14s cubic-bezier(.3,0,.65,1) infinite; }
+.opening-laundry { position:absolute; z-index:6; left:35%; top:42%; width:12%; transform-origin:50% 3%; animation:laundrySoft 4.5s ease-in-out infinite; filter:saturate(.78) brightness(.85); }
+.window-lights i { position:absolute; z-index:5; background:#e8c35c; filter:blur(8px); mix-blend-mode:screen; opacity:.15; animation:windowFlicker 6s ease-in-out infinite; }
+.window-lights i:nth-child(1){left:15%;top:28%;width:7%;height:14%}.window-lights i:nth-child(2){left:64%;top:30%;width:5%;height:13%;animation-delay:1.7s}.window-lights i:nth-child(3){left:76%;top:38%;width:3%;height:9%;animation-delay:3.1s}
+.wind-stroke { position:absolute; z-index:7; left:-30%; bottom:13%; width:25%; height:7%; background:linear-gradient(90deg,transparent,rgba(242,234,219,.25),transparent); filter:blur(12px); transform:skewX(-22deg); animation:windAcross 11s ease-in-out infinite; }
+.opening-baker img,.lane-baker img,.lane-postwoman img,.school-grandmother img,.school-child img { animation:frame3 8s ease-in-out infinite; }
+.opening-baker img:nth-child(2),.lane-baker img:nth-child(2),.school-grandmother img:nth-child(2),.school-child img:nth-child(2){animation-delay:2.6s}.opening-baker img:nth-child(3),.lane-baker img:nth-child(3),.school-grandmother img:nth-child(3),.school-child img:nth-child(3){animation-delay:5.2s}.opening-baker img:nth-child(4){animation-delay:7.1s}
+.opening-woman img,.lane-postwoman img { animation:frame4 3.2s ease-in-out infinite; }.opening-woman img:nth-child(2),.lane-postwoman img:nth-child(2){animation-delay:.8s}.opening-woman img:nth-child(3),.lane-postwoman img:nth-child(3){animation-delay:1.6s}.opening-woman img:nth-child(4),.lane-postwoman img:nth-child(4){animation-delay:2.4s}
+.lane-baker{right:26.5%;top:38%;width:13%;height:25%}.lane-postwoman{left:28%;bottom:10%;width:18%;height:39%;animation:postwomanAcross 13s ease-in-out infinite}.lane-leaves{position:absolute;z-index:7;right:0;top:10%;width:18%;height:37%;background:radial-gradient(ellipse at 90% 35%,rgba(38,63,97,.18),transparent 67%);transform-origin:right top;animation:leafShadow 5.6s ease-in-out infinite}.school-grandmother{left:42%;top:42%;width:15%;height:35%}.school-child{left:60.5%;top:55%;width:12%;height:24%}
+@keyframes frame3{0%,8%{opacity:0;transform:translateY(2px)}13%,27%{opacity:1;transform:translateY(0)}34%,100%{opacity:0}}@keyframes frame4{0%,6%{opacity:0}12%,24%{opacity:1}31%,100%{opacity:0}}@keyframes womanAcross{0%,8%{transform:translateX(-22%);opacity:0}14%{opacity:1}78%{opacity:1}88%,100%{transform:translateX(82%);opacity:0}}@keyframes postwomanAcross{0%,10%{transform:translateX(-18%);opacity:0}18%{opacity:1}72%{opacity:1}84%,100%{transform:translateX(45%);opacity:0}}@keyframes laundrySoft{0%,100%{transform:rotate(0) skewX(0)}38%{transform:rotate(.8deg) skewX(-1.2deg)}68%{transform:rotate(-.45deg) skewX(.7deg)}}@keyframes windowFlicker{0%,8%,13%,100%{opacity:.16}10%{opacity:.04}46%{opacity:.42}58%{opacity:.23}}@keyframes windAcross{0%,12%{transform:translateX(0) skewX(-22deg);opacity:0}22%{opacity:.65}67%{opacity:.32}80%,100%{transform:translateX(540%) skewX(-22deg);opacity:0}}@keyframes leafShadow{0%,100%{transform:rotate(0);opacity:.25}50%{transform:rotate(2deg);opacity:.5}}
+.opening .art { filter:saturate(1.32) contrast(1.18) brightness(.88); }
+.opening::after { content:""; position:absolute; z-index:4; inset:0; pointer-events:none; background:linear-gradient(180deg,rgba(25,48,78,.16),transparent 48%,rgba(38,49,55,.12)),radial-gradient(circle at 57% 58%,transparent 43%,rgba(30,43,60,.22) 100%); mix-blend-mode:multiply; }
+
+/* Echte Gelenkfigur im Bäckereifenster: kein Frame-Flackern. */
+.baker-rig {
+  position:absolute;
+  z-index:8;
+  left:43.15%;
+  top:64.4%;
+  width:6.4%;
+  aspect-ratio:.88;
+  pointer-events:none;
+  filter:saturate(.88) contrast(1.04) brightness(.91);
+  transform-origin:50% 100%;
+  overflow:hidden;
+  clip-path:inset(0 0 9% 0);
+}
+.baker-part { position:absolute; display:block; object-fit:contain; }
+.baker-torso { z-index:2; left:23%; top:27%; width:55%; height:54%; }
+.baker-head { z-index:4; left:32%; top:0; width:38%; height:39%; transform-origin:50% 88%; }
+.baker-limb{position:absolute;z-index:5;top:34%;width:31%;height:55%;transform-origin:50% 8%}
+.baker-limb img{position:absolute;display:block;object-fit:contain}
+.baker-left{left:4%}.baker-right{right:4%}
+.baker-upper{left:15%;top:0;width:75%;height:48%;transform-origin:50% 12%}
+.baker-lower{left:0;top:34%;width:100%;height:63%;transform-origin:55% 10%}
+.baker-dough { z-index:6; left:32%; top:78%; width:38%; height:14%; transform-origin:50% 70%; }
+.opening.ready .baker-rig { animation:bakerBody 4.8s cubic-bezier(.45,0,.3,1) infinite; }
+.opening.ready .baker-head { animation:bakerLook 9.6s cubic-bezier(.45,0,.3,1) infinite; }
+.opening.ready .baker-left { animation:kneadLeft 4.8s cubic-bezier(.45,0,.3,1) infinite; }
+.opening.ready .baker-right { animation:kneadRight 4.8s cubic-bezier(.45,0,.3,1) infinite; }
+.opening.ready .baker-left .baker-lower { animation:forearmLeft 4.8s cubic-bezier(.45,0,.3,1) infinite; }
+.opening.ready .baker-right .baker-lower { animation:forearmRight 4.8s cubic-bezier(.45,0,.3,1) infinite; }
+.opening.ready .baker-dough { animation:doughPress 4.8s cubic-bezier(.45,0,.3,1) infinite; }
+@keyframes bakerBody {
+  0%,100%{transform:translateY(0) rotate(0)}
+  22%{transform:translateY(1.2%) rotate(-.25deg)}
+  48%{transform:translateY(0) rotate(.2deg)}
+  72%{transform:translateY(1.6%) rotate(.3deg)}
+}
+@keyframes bakerLook {
+  0%,42%,100%{transform:rotate(0) translateY(0)}
+  49%,63%{transform:rotate(-2deg) translateY(.8%)}
+  70%{transform:rotate(.7deg) translateY(0)}
+}
+@keyframes kneadLeft {
+  0%,100%{transform:translate(0,0) rotate(0)}
+  22%{transform:translate(9%,7%) rotate(7deg)}
+  48%{transform:translate(1%,-2%) rotate(-3deg)}
+  72%{transform:translate(11%,8%) rotate(8deg)}
+}
+@keyframes kneadRight {
+  0%,100%{transform:translate(0,0) rotate(0)}
+  22%{transform:translate(-2%,-2%) rotate(3deg)}
+  48%{transform:translate(-10%,7%) rotate(-7deg)}
+  72%{transform:translate(-2%,2%) rotate(-2deg)}
+}
+@keyframes doughPress {
+  0%,100%{transform:scale(1)}
+  22%{transform:scaleX(1.035) scaleY(.94) translateY(2%)}
+  48%{transform:scaleX(1.01) scaleY(.98)}
+  72%{transform:scaleX(1.045) scaleY(.93) translateY(2.5%)}
+}
+@keyframes forearmLeft{0%,100%{transform:rotate(0)}22%,72%{transform:rotate(8deg)}48%{transform:rotate(-4deg)}}
+@keyframes forearmRight{0%,100%{transform:rotate(0)}22%{transform:rotate(-3deg)}48%{transform:rotate(-9deg)}72%{transform:rotate(2deg)}}
+
+/* Passantin: verankerte Gelenke und echter Gang statt Bildwechsel. */
+.walker-path{position:absolute;z-index:8;left:69%;bottom:7.4%;width:23%;height:31%;pointer-events:none}
+.walker-rig{position:absolute;left:58%;bottom:0;width:31%;height:100%;transform-origin:50% 96%;filter:saturate(.86) contrast(1.02)}
+.walker-part{position:absolute;display:block;object-fit:contain;transform-origin:50% 10%}
+.walker-head{z-index:6;left:28%;top:0;width:45%;height:28%;transform-origin:50% 86%}
+.walker-torso{z-index:4;left:24%;top:20%;width:54%;height:43%}
+.walker-pelvis{z-index:3;left:34%;top:51%;width:37%;height:18%}
+.walker-back-arm{z-index:2;left:15%;top:25%;width:31%;height:39%;transform-origin:58% 8%}
+.walker-front-arm{z-index:7;left:57%;top:24%;width:36%;height:40%;transform-origin:42% 9%}
+.walker-leg{position:absolute;top:57%;width:32%;height:43%;transform-origin:50% 8%}
+.walker-leg img{position:absolute;display:block;object-fit:contain}
+.walker-thigh{left:0;top:0;width:100%;height:57%}
+.walker-knee{position:absolute;left:8%;top:43%;width:105%;height:61%;transform-origin:50% 9%}
+.walker-shin{inset:0;width:100%;height:100%}
+.walker-back-leg{z-index:1;left:42%}.walker-front-leg{z-index:5;left:28%}
+.opening.ready .walker-path{animation:walkAcross 14s linear infinite}
+.opening.ready .walker-rig{animation:walkerBob 1.15s ease-in-out infinite}
+.opening.ready .walker-front-leg{animation:legFront 1.15s ease-in-out infinite}
+.opening.ready .walker-back-leg{animation:legBack 1.15s ease-in-out infinite}
+.opening.ready .walker-front-leg .walker-knee{animation:shinFront 1.15s ease-in-out infinite}
+.opening.ready .walker-back-leg .walker-knee{animation:shinBack 1.15s ease-in-out infinite}
+.opening.ready .walker-front-arm{animation:armFront 1.15s ease-in-out infinite}
+.opening.ready .walker-back-arm{animation:armBack 1.15s ease-in-out infinite}
+@keyframes walkAcross{0%{transform:translateX(55%);opacity:0}8%{opacity:1}88%{opacity:1}100%{transform:translateX(-210%);opacity:0}}
+@keyframes walkerBob{0%,100%{transform:translateY(0) rotate(-.25deg)}50%{transform:translateY(-1.8%) rotate(.25deg)}}
+@keyframes legFront{0%,100%{transform:rotate(-16deg)}50%{transform:rotate(18deg)}}
+@keyframes legBack{0%,100%{transform:rotate(18deg)}50%{transform:rotate(-16deg)}}
+@keyframes shinFront{0%,100%{transform:translate(-7%,1%) rotate(9deg)}50%{transform:translate(8%,-2%) rotate(-12deg)}}
+@keyframes shinBack{0%,100%{transform:translate(8%,-2%) rotate(-12deg)}50%{transform:translate(-7%,1%) rotate(9deg)}}
+@keyframes armFront{0%,100%{transform:rotate(7deg)}50%{transform:rotate(-5deg)}}
+@keyframes armBack{0%,100%{transform:rotate(-11deg)}50%{transform:rotate(12deg)}}
+@media (prefers-reduced-motion:reduce){
+  .baker-rig,.baker-part{animation:none!important}
+}
+
+/* Lückenlose Figurenanimation: Bewegung statt Aufblitzen. */
+.opening-baker img,.lane-baker img,.school-grandmother img,.school-child img,
+.opening-woman img,.lane-postwoman img { animation:none; opacity:0; }
+
+.opening-baker img:nth-child(1),.lane-baker img:nth-child(1),.school-grandmother img:nth-child(1),.school-child img:nth-child(1){animation:cycle3a 6s ease-in-out infinite}
+.opening-baker img:nth-child(2),.lane-baker img:nth-child(2),.school-grandmother img:nth-child(2),.school-child img:nth-child(2){animation:cycle3b 6s ease-in-out infinite}
+.opening-baker img:nth-child(3),.lane-baker img:nth-child(3),.school-grandmother img:nth-child(3),.school-child img:nth-child(3){animation:cycle3c 6s ease-in-out infinite}
+.opening-baker img:nth-child(4){display:none}
+
+.opening-woman img:nth-child(1),.lane-postwoman img:nth-child(1){animation:cycle4a 1.8s linear infinite}
+.opening-woman img:nth-child(2),.lane-postwoman img:nth-child(2){animation:cycle4b 1.8s linear infinite}
+.opening-woman img:nth-child(3),.lane-postwoman img:nth-child(3){animation:cycle4c 1.8s linear infinite}
+.opening-woman img:nth-child(4),.lane-postwoman img:nth-child(4){animation:cycle4d 1.8s linear infinite}
+
+.opening-woman{animation:walkOpening 12s linear infinite}
+.lane-postwoman{animation:walkLane 12s linear infinite}
+.opening-baker,.lane-baker{animation:bakerWeight 6s ease-in-out infinite}
+.school-grandmother{animation:grandmotherLean 6s ease-in-out infinite}
+.school-child{animation:childReach 6s ease-in-out infinite}
+
+@keyframes cycle3a{0%,29%{opacity:1}34%,100%{opacity:0}}
+@keyframes cycle3b{0%,28%{opacity:0}34%,62%{opacity:1}68%,100%{opacity:0}}
+@keyframes cycle3c{0%,61%{opacity:0}68%,94%{opacity:1}100%{opacity:0}}
+@keyframes cycle4a{0%,20%{opacity:1}25%,100%{opacity:0}}
+@keyframes cycle4b{0%,20%{opacity:0}25%,45%{opacity:1}50%,100%{opacity:0}}
+@keyframes cycle4c{0%,45%{opacity:0}50%,70%{opacity:1}75%,100%{opacity:0}}
+@keyframes cycle4d{0%,70%{opacity:0}75%,95%{opacity:1}100%{opacity:0}}
+@keyframes walkOpening{0%{transform:translateX(-55%);opacity:0}7%{opacity:1}88%{opacity:1}100%{transform:translateX(235%);opacity:0}}
+@keyframes walkLane{0%{transform:translateX(-48%);opacity:0}8%{opacity:1}84%{opacity:1}100%{transform:translateX(170%);opacity:0}}
+@keyframes bakerWeight{0%,100%{transform:translateY(0) rotate(0)}28%{transform:translateY(2px) rotate(-.4deg)}57%{transform:translateY(0) rotate(.35deg)}78%{transform:translateY(-1px)}}
+@keyframes grandmotherLean{0%,100%{transform:translate(0,0) rotate(0)}34%{transform:translate(1px,2px) rotate(.35deg)}67%{transform:translate(-1px,0) rotate(-.25deg)}}
+@keyframes childReach{0%,100%{transform:translateX(0) rotate(0)}38%{transform:translateX(2px) rotate(.4deg)}72%{transform:translateX(5px) rotate(.8deg)}}

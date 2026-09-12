@@ -24,6 +24,13 @@ function approach(clientX, clientY) {
 scene.addEventListener('pointermove', event => approach(event.clientX, event.clientY));
 doorSensor.addEventListener('pointerdown', () => scene.classList.add('door-open'));
 doorSensor.addEventListener('focus', () => scene.classList.add('door-open'));
+doorSensor.addEventListener('click', () => {
+  if (!doorReady) return;
+  scene.classList.add('door-open');
+  window.setTimeout(() => {
+    window.location.href = '../experience-v1/?scene=2';
+  }, 620);
+});
 
 const canvas = document.querySelector('.wind-particles');
 const context = canvas.getContext('2d');
